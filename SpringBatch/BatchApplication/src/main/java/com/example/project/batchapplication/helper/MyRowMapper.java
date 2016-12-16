@@ -23,11 +23,11 @@ public class MyRowMapper implements RowMapper<MyDataTransferObject> {
 
 
     /**
-     * Maps a row from the SAMPLE table to @{link BatteryOrderDto}.
+     * Maps a row from the SAMPLE table to @{link MyDataTransferObject}.
      *
      * @param rs @{link ResultSet}
      * @param rowNum integer
-     * @return @{link BatteryOrderDto}
+     * @return @{link MyDataTransferObject}
      * @throws SQLException
      */
     @Override
