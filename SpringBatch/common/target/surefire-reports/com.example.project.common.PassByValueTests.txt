@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.example.project.common.PassByValueTests
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.05 sec - in com.example.project.common.PassByValueTests
