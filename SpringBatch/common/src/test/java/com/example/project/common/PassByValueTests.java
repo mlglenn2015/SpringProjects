@@ -107,8 +107,11 @@ public class PassByValueTests {
     @Test
     public void passByValueTest() {
         MyDataTransferObject dto = new MyDataTransferObject(1L, "Max", "", "");
+        LOGGER.debug("DTO Before switchNames(): {}", dto.getProperty1());
+
         switchNames(dto);
 
+        LOGGER.debug("DTO after switchNames(): {}", dto.getProperty1());
         if (dto.getProperty1().equals("Max")) { //true
             LOGGER.debug( "Java passes by value." );
 
@@ -134,13 +137,15 @@ public class PassByValueTests {
         LOGGER.debug("************************* PassByValueTests.passByValueHashMapTest() ******************************");
         Map<String, String> stringMap = new HashMap<>();
         LOGGER.debug("Step 1: stringMap.hashCode(): {}", stringMap.hashCode());
+
         stringMap.put("String1Key", "String1Value");
-        LOGGER.debug("Step 2: stringMap: {}", stringMap.toString());
+        LOGGER.debug("Step 2: stringMap.toString() Before call to addValuesToHashMap(): {}", stringMap.toString());
 
         addValuesToHashMap(stringMap);
 
+        LOGGER.debug("");
         LOGGER.debug("Step 5: stringMap.hashCode(): {}", stringMap.hashCode());
-        LOGGER.debug("Step 6: stringMap: {}", stringMap.toString());
+        LOGGER.debug("Step 6: stringMap.toString() After call to addValuesToHashMap(): {}", stringMap.toString());
     }
 
     /**
@@ -163,10 +168,11 @@ public class PassByValueTests {
         LOGGER.debug("My DTO: {}", dto);
     }
 
-    public static void switchNames(MyDataTransferObject dto) {
+    private void switchNames(MyDataTransferObject dto) {
         dto.getProperty1().equals("Max"); // true
 
         dto = new MyDataTransferObject(2L, "Fifi", "", "");
+        LOGGER.debug("DTO within switchNames(): {}", dto.getProperty1());
         dto.getProperty1().equals("Fifi"); // true
     }
 
@@ -179,13 +185,15 @@ public class PassByValueTests {
         arg2 = temp;
     }
 
-    private void addValuesToHashMap(Map<String, String> stringMap) {
-        LOGGER.debug("Step 3: addValuesToHashMap(): stringMap: {}", stringMap);
+    private void addValuesToHashMap(final Map<String, String> stringMap) {
+        LOGGER.debug("");
+        LOGGER.debug("Step 3: addValuesToHashMap(): stringMap BEFORE ADDING VALUES: {}", stringMap);
         stringMap.put("String2Key", "String2Value");
-        LOGGER.debug("Step 4: addValuesToHashMap(): stringMap: {}", stringMap.toString());
+        LOGGER.debug("Step 4: addValuesToHashMap().toString() AFTER ADDING VALUES: stringMap: {}", stringMap.toString());
     }
 
     private void setValuesToDto(MyDataTransferObject dto) {
+        LOGGER.debug("");
         LOGGER.debug("addValuesToDto(): My DTO: {}", dto);
         dto.setProperty1("string4");
         dto.setProperty2("string5");
